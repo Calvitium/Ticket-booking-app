@@ -16,5 +16,7 @@ public class Screening {
     public LocalDateTime getDate(){
         return date;
     }
-    // private Room room;
+    public String getMovieTitle(){
+        return movieTitle;
+    }
 }

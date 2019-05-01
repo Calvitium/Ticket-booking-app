@@ -23,9 +23,10 @@ public class Movie {
             sortScreeningsChronologically();
     }
 
+    public String getTitle() { return movieTitle;
+    }
+
     private void sortScreeningsChronologically() { screenings.sort(Comparator.comparing(Screening::getDate));
     }
 
-    public String getTitle() { return movieTitle;
-    }
 }
