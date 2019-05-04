@@ -63,7 +63,6 @@ public final class Multiplex {
                 for (ScreeningDay day : weeklyRepertoire)
                     if (day.getDate().equals(date.toLocalDate()))
                         day.addScreening(title, room, date);
-                System.out.println("Screening added: \"" + title + "\", room: " + room + ", date: " + date.toString());
                 return;
             }
         }
