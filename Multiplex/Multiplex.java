@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.*;
 
+import static BookingAppDemo.BookingApp.clearConsole;
+
 public final class Multiplex {
     private ScreeningRoom[] rooms;
     private ArrayList<Movie> repertoire;
@@ -25,13 +27,17 @@ public final class Multiplex {
         this.reservationList = new HashMap<>();
         for (int name = 0; name <= 2; name++)
             rooms[name] = new ScreeningRoom(name + 1);
-
+        clearConsole();
         int chosenWeek = choosePreferredWeek();
 
         LocalDate date = LocalDate.of(2018, Month.DECEMBER, 31);
         date = date.plusWeeks(chosenWeek - 1);
         for (int day = 0; day < weeklyRepertoire.length; day++)
             weeklyRepertoire[day] = new ScreeningDay(date.plusDays(day));
+    }
+
+    public static LocalDate getWeeklyRepertoireDay(int day) {
+        return weeklyRepertoire[day - 1].getDate();
     }
 
     public Reservation findReservation(Integer reservation_ID) {
@@ -64,13 +70,10 @@ public final class Multiplex {
         System.out.println("Adding screening impossible - no such movie: " + title);
     }
 
-    public static LocalDate getWeeklyRepertoireDay(int day) {
-        return weeklyRepertoire[day - 1].getDate();
-    }
-
     private int choosePreferredWeek() {
         int chosenWeek;
         System.out.println("Choose a week of 2019 to create a demo repertoire (choose between 1 and 52):");
+        System.out.println("REMEBER! Repertoire of week before the current one won't show any possible screenings to book.");
         do {
             try {
                 chosenWeek = new Scanner(System.in).nextInt();

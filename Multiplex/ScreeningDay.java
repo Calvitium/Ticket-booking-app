@@ -26,7 +26,7 @@ class ScreeningDay {
         System.out.println("Numbers in brackets represent your choice.");
         do{
             showAvailableScreenings();
-            System.out.print("\nEnter your screening number: ");
+            System.out.print("\nEnter the screening number: ");
             try {
                 number = new Scanner(System.in).nextInt();
                 if(number < 1 || number > screenings.size())
@@ -43,6 +43,15 @@ class ScreeningDay {
         return screenings.get(number-1);
     }
 
+    void addScreening(String title, int room, LocalDateTime date) {
+        screenings.add(new Screening(title, room, date));
+            if(screenings.size()>1)
+                sortByTitleThenDate();
+    }
+
+    LocalDate getDate() { return localDate;
+    }
+
     private void showAvailableScreenings() {
         System.out.print("Available screenings on " + localDate.getDayOfWeek() + ",  " + localDate + ":");
         String movieTitle = "empty";
@@ -57,15 +66,6 @@ class ScreeningDay {
                 System.out.print(screening.getDate().getHour() + ":" + screening.getDate().getMinute() + "(" + number + ")  |  ");
             number++;
         }
-    }
-
-    void addScreening(String title, int room, LocalDateTime date) {
-        screenings.add(new Screening(title, room, date));
-            if(screenings.size()>1)
-                sortByTitleThenDate();
-    }
-
-    LocalDate getDate() { return localDate;
     }
 
     private void sortByTitleThenDate() {

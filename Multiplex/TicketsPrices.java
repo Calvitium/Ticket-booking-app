@@ -5,23 +5,17 @@ public enum TicketsPrices {
 
     private final float price;
     private final String type;
-    private float ticketsAmount;
-
 
     TicketsPrices(float price, String type) {
         this.price = price;
         this.type = type;
     }
 
-    public void setTicketsAmount(int amount){
-        this.ticketsAmount = amount;
-    }
-
-    public String getType(){
+    public String getType() {
         return type;
     }
 
-    public float getPrice(){
+    public float getPrice() {
         return price;
     }
 }

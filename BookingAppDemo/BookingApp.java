@@ -1,21 +1,19 @@
 package BookingAppDemo;
 
-import Multiplex.Multiplex;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
-import static BookingDetails.RoomSpecifications.*;
 import static Multiplex.Multiplex.MULTIPLEX;
 import static Multiplex.Multiplex.getWeeklyRepertoireDay;
+import static java.lang.Thread.sleep;
 
 public class BookingApp {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
        addMovies();
        addScreenings();
         clearConsole();
        MULTIPLEX.createNewReservation();
-       System.out.print(MULTIPLEX.findReservation(1));
+       sleep(15000);
     }
 
     private static void addScreenings() {

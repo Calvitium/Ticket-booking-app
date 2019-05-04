@@ -29,7 +29,7 @@ public class Reservation {
     private float totalCost;
 
 
-    public Reservation() throws IOException {
+    Reservation() throws IOException {
         reservation_ID = current_ID;
         current_ID++;
         int day = choosePreferredDay();
@@ -51,10 +51,35 @@ public class Reservation {
         System.out.print(screening);
         System.out.println("NAME: " + clientName);
         System.out.println("SURNAME: " + clientSurname);
-        System.out.println("TOTAL COST: " + totalCost);
+        System.out.println("TOTAL COST: " + totalCost + " PLN");
         System.out.println("EXPIRATION TIME: " + expirationTime);
         System.out.print("RESERVATION ID: " + df.format(reservation_ID));
         return "\n";
+    }
+
+    Integer getID() {
+        return reservation_ID;
+    }
+
+    private void enterName() {
+        System.out.print("Enter the name: ");
+        do {
+            clientName = new Scanner(System.in).next();
+            if (clientName.length() < 3)
+                System.out.println("Your name should contain at least 3 letters - try again. ");
+            if (!containsLettersOnly())
+                System.out.print("Your name should consist of letters only: ");
+        } while (clientName.length() < 3 || !containsLettersOnly());
+
+        clientName = clientName.substring(0, 1).toUpperCase() + clientName.substring(1).toLowerCase();
+    }
+
+    private void enterSurname() {
+        System.out.println("Now enter your surname.");
+        System.out.print("The surname could consist of two parts separated with a single dash: ");
+        do {
+            clientSurname = new Scanner(System.in).next();
+        } while (!isSurnameCorrect());
     }
 
     private void chooseTickets() {
@@ -96,31 +121,6 @@ public class Reservation {
             }
         } while (amount > ticketsLeft || amount<0);
         return amount;
-    }
-
-    Integer getID() {
-        return reservation_ID;
-    }
-
-    private void enterName() {
-        System.out.print("Enter the name: ");
-        do {
-            clientName = new Scanner(System.in).next();
-            if (clientName.length() < 3)
-                System.out.println("Your name should contain at least 3 letters - try again. ");
-            if (!containsLettersOnly())
-                System.out.print("Your name should consist of letters only: ");
-        } while (clientName.length() < 3 || !containsLettersOnly());
-
-        clientName = clientName.substring(0, 1).toUpperCase() + clientName.substring(1).toLowerCase();
-    }
-
-    private void enterSurname() {
-        System.out.println("Now enter your surname.");
-        System.out.print("The surname could consist of two parts separated with a single dash: ");
-        do {
-            clientSurname = new Scanner(System.in).next();
-        } while (!isSurnameCorrect());
     }
 
     private int choosePreferredDay() {
