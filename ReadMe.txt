@@ -15,3 +15,4 @@ ADDITIONAL ASSUMPTIONS:
 5. Demo contains 4 movies. Each one is available every day. 
 6. 6 screenings per day.
 7. There are no demo reservations in the system which means that seats during each screening are free to sit. 
+8. Entities such as Movie or ScreeningRoom are not that significant in the solution. They might be useful in case of expanding the application
